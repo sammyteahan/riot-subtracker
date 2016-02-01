@@ -2,10 +2,10 @@
   <h2>Analytics</h2>
   <hr>
 
-  <h4>Subs</h4>
+  <h4 class="">Subs</h4>
   <submission-list submissions={state.submissions.items}></submission-list>
 
-  <h4>Sweeps</h4>
+  <h4 class="">Sweeps</h4>
   <sweep-list sweeps={state.sweeps.items}></sweep-list>
 
   <submission-form 

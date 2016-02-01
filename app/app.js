@@ -20,6 +20,11 @@ import {
   addSubmission 
 } from './actions/actions';
 
+/**
+* @desc stylesheet
+*/
+import './sass/main.scss';
+
 
 const submissions = (state, action) => {
   switch (action.type) {
@@ -40,10 +45,9 @@ function submissionReducer(state={}, action) {
         items: action.data
       });
     case 'SUBMISSION_ADDED':
-      return [...state, {
-          items: action.name
-        }
-      ];
+      return Object.assign({}, state, {
+        items: [...state.items, action.data]
+      });
     default:
       return state;
   }

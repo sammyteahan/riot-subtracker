@@ -1,0 +1,363 @@
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+         -o-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0 2px;
+}
+
+/*===========================================================================*\
+                                    ¡FUNCTIONS
+\*===========================================================================*/
+$configs: (
+  header: 100px,
+  footer: 240px
+);
+
+/**
+* Colors: accent == blue, main === gray && highlight === red
+*/
+/// Map of colors used as a theme for this site
+/// @name colors
+/// @type map
+$colors: (
+  main: #ffffff,        /* WHITE */
+  accent-1: #dfdfdf,    /* LIGHTEST GRAY */
+  accent-4: #2b2b2b,    /* DARK GRAY */
+  default-font: #525252, /* DARK GRAY FONT */
+  highlight-3: #a91b1b,  /* BRIGHTER RED FONT (LOGO COLOR) */
+  highlight-4: #b91e1e,  /* BRIGHT RED FONT */
+  highlight-6: #4c2f2f,  /* DARK MAROON RED FOR ROLLOVER ITEMS */
+  highlight-7: #e3a5a5,   /* LIGHT RED */
+  // background-light: #E6E7E8, /* OFFWHITE COLOR USED FOR BACKGROUND */
+  // default-font: #333D47,     /* DARK GRAY FONT COLOR */
+  // accent-4: #222C65,         /* MAIN BLUE */
+  // accent-8: #222C65,         /* BLUE WITH TEN PERCENT DARKENING */
+);
+
+$breakpoints: (
+  phone:      450px,
+  phone-lg:   650px,
+  tablet:     767px,
+  tablet-lg:  992px,
+  desktop:    1024px,
+  desktop-xl: 1400px
+);
+
+/*------------------------------------*\
+           Helper functions
+\*------------------------------------*/
+/**
+* so we don't always have to 
+* type 'map-get'
+*/
+/* background: color(color-100); */
+@function config($key) {
+  @if map-has-key($configs, $key) {
+    @return map-get($configs, $key);
+  }
+  @warn "Unknown #{$key} in configs map";
+  @return null;
+}
+
+/// Grab a color from the colors map
+/// @name color
+/// @param {str} $key - name of the key in the colors map
+/// @throw color {key} not found in colors map
+/// @return {str} the value of the colors map associated with given key
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+  }
+  @warn "Unknown #{$key} in colors map";
+  @return null;
+}
+
+/* breakpoint(phone); */
+@function breakpoint($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  }
+  @warn "Unknown #{$key} in breakpoints map";
+  @return null;
+}
+
+/*------------------------------------*\
+          ¡SPACING AND ¡SIZES 
+\*------------------------------------*/
+
+$base-spacing-unit:  20px;
+$half-spacing-unit:  ($base-spacing-unit / 2);
+$squeeze-width:      815px;
+$header-squeeze:     980px;
+$product-squeeze:    800px;
+$default-font-size:  16px;
+$header-height:      100px;
+
+
+/********************
+¡MIXINS
+********************/
+
+////
+/// Poster comments. these will be applied to everything in the file
+/// @author sammyteahan
+////
+
+/// Used to create rows of responsive items
+/// @name gridMachine
+/// @param {int} $numPerRow [none] - Number of items per row
+/// @param {string} $margin [none] - Margin between items 
+/// @example
+///     .container {
+///         .item {
+///             @include gridMachine(4, 2%);
+///             float: left;
+///         }
+///     }
+@mixin gridMachine($numPerRow, $margin) {
+  width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) {
+    margin-bottom: $margin;
+    margin-right: $margin;
+  }
+  &:nth-child(#{$numPerRow}n) {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}
+
+@mixin animation($str) {
+   -webkit-animation: #{$str};
+      -moz-animation: #{$str};
+       -ms-animation: #{$str};
+        -o-animation: #{$str};
+           animation: #{$str};
+}
+
+@mixin borderBox() {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+/// Used to build a class with all the necessary vendor prefixes
+/// @name transition
+/// @param {string} $transition [none] - The css transition to perform
+/// @example
+///     @include transition(top .5s);
+@mixin transition($str) {
+    -webkit-transition: #{$str};
+       -moz-transition: #{$str};
+        -ms-transition: #{$str};
+         -o-transition: #{$str};
+            transition: #{$str};
+}
+
+@mixin transform($str) {
+    -webkit-transform: #{$str};
+    -moz-transform: #{$str};
+    -ms-transform: #{$str};
+    -o-transform: #{$str};
+    transform: #{$str};
+}
+
+@mixin transformOrigin($str) {
+    -webkit-transform-origin: #{$str};
+    -moz-transform-origin: #{$str};
+    -ms-transform-origin: #{$str};
+    -o-transform-origin: #{$str};
+    transform-origin: #{$str};
+}
+
+@mixin boxShadow($str) {
+    -webkit-box-shadow: #{$str};
+            box-shadow: #{$str};
+}
+
+/// Used to build keyframe animations with all vendor prefixes
+/// @name keyframes
+/// @param {string} $animation-name [none] - Name of the css animation
+/// @content interpolation of the normal keyframe definition
+/// @example
+///     @include keyframes(fadeIn) {
+///         from { opacity: 0% }
+///         to   { opacity: 100% }
+///     }
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/**
+*
+* GRADIENTS
+*
+**/
+
+@mixin gradient($color-1, $color-2) {
+  background-image: -o-linear-gradient(bottom, $color-1 0%, $color-2 100%);
+  background-image: -moz-linear-gradient(bottom, $color-1 0%, $color-2 100%);
+  background-image: -webkit-linear-gradient(bottom, $color-1 0%, $color-2 100%);
+  background-image: -ms-linear-gradient(bottom, $color-1 0%, $color-2 100%);
+  background-image: linear-gradient(to bottom, $color-1 0%, $color-2 100%);
+  background-repeat: no-repeat;
+}
+
+
+
+/********************
+¡CLASSES
+********************/
+.lk-clear:after {
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+}
+
+.lk-squeeze {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+  height: 100%;
+  max-width: $squeeze-width;
+  @media screen and (max-width: breakpoint(phone-lg)) {
+    padding: 0 10px;
+  }
+}
+
+.lk-squeeze:after {
+    @extend .lk-clear;
+}
+
+.show-mobile-inline,
+.show-mobile-block{
+  display: none !important;
+}
+
+.show-mobile-inline {
+  @media screen and (max-width: breakpoint(tablet)){
+    display: inline-block;
+  }
+}
+
+.show-mobile-block {
+  @media screen and (max-width: breakpoint(tablet)){
+    display: block !important;
+  }
+}
+
+.hide-mobile {
+  @media screen and (max-width: breakpoint(phone-lg)){
+    display: none;
+  }
+}
+
+/**
+ * Add/remove margins
+ */
+.push           { margin:       $base-spacing-unit!important; }
+.push--top      { margin-top:   $base-spacing-unit!important; }
+.push--right    { margin-right: $base-spacing-unit!important; }
+.push--bottom   { margin-bottom:$base-spacing-unit!important; }
+.push--left     { margin-left:  $base-spacing-unit!important; }
+.push--ends     { margin-top:   $base-spacing-unit!important; margin-bottom:$base-spacing-unit!important; }
+.push--sides    { margin-right: $base-spacing-unit!important; margin-left:  $base-spacing-unit!important; }
+
+.push-half          { margin:       $half-spacing-unit!important; }
+.push-half--top     { margin-top:   $half-spacing-unit!important; }
+.push-half--right   { margin-right: $half-spacing-unit!important; }
+.push-half--bottom  { margin-bottom:$half-spacing-unit!important; }
+.push-half--left    { margin-left:  $half-spacing-unit!important; }
+.push-half--ends    { margin-top:   $half-spacing-unit!important; margin-bottom:$half-spacing-unit!important; }
+.push-half--sides   { margin-right: $half-spacing-unit!important; margin-left:  $half-spacing-unit!important; }
+.push-x--top        { margin-top:   $base-spacing-unit * 4 }
+
+.flush          { margin:       0!important; }
+.flush--top     { margin-top:   0!important; }
+.flush--right   { margin-right: 0!important; }
+.flush--bottom  { margin-bottom:0!important; }
+.flush--left    { margin-left:  0!important; }
+.flush--ends    { margin-top:   0!important; margin-bottom:0!important; }
+.flush--sides   { margin-right: 0!important; margin-left:  0!important; }
+
+/**
+ * Add/remove paddings
+ */
+.pad           { padding:       $base-spacing-unit!important; }
+.pad--top      { padding-top:   $base-spacing-unit!important; }
+.pad--right    { padding-right: $base-spacing-unit!important; }
+.pad--bottom   { padding-bottom:$base-spacing-unit!important; }
+.pad--left     { padding-left:  $base-spacing-unit!important; }
+.pad--ends     { padding-top:   $base-spacing-unit!important; padding-bottom:$base-spacing-unit!important; }
+.pad--sides    { padding-right: $base-spacing-unit!important; padding-left:  $base-spacing-unit!important; }
+
+.pad-half           { padding:       $half-spacing-unit!important; }
+.pad-half--top      { padding-top:   $half-spacing-unit!important; }
+.pad-half--right    { padding-right: $half-spacing-unit!important; }
+.pad-half--bottom   { padding-bottom:$half-spacing-unit!important; }
+.pad-half--left     { padding-left:  $half-spacing-unit!important; }
+.pad-half--ends     { padding-top:   $half-spacing-unit!important; padding-bottom:$half-spacing-unit!important; }
+.pad-half--sides    { padding-right: $half-spacing-unit!important; padding-left:  $half-spacing-unit!important; }
+
+/**
+* Floats  
+*/
+.none            { float: none !important; }
+.pull--right     { float: right !important; }
+.pull--left      { float: left !important;  }
+.clear           { display: block; float: none; clear: both; }
+
+/**
+* Centering elements
+*/
+.center--vertical   { vertical-align: middle; }
+.center--horizontal { margin: 0 auto; display: block; }
+.text--center       { text-align: center !important; }
+.text--left         { text-align: left !important; }
+.text--right        { text-align: right !important; }
+
+/**
+ * COLUMNS
+ */
+.col-wrap {
+  @extend .lk-clear;
+  .col {
+    float: left;
+    &.col-50 {
+      width: 50%;
+      @media screen and (max-width: breakpoint(tablet)) {
+        width: 100%;
+        float: none;
+      }
+    }
+  }
+  .col-50:nth-last-child(2):first-child {
+    padding-right: 50px;
+    @media screen and (max-width: breakpoint(tablet)) {
+        padding-right: 0
+    }
+  }
+  .col-50 + .col-50 {
+    padding-left: 50px;
+    @media screen and (max-width: breakpoint(tablet)) {
+        padding-left: 0;
+    }
+  }
+}
