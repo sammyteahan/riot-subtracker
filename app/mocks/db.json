@@ -1,0 +1,58 @@
+{
+  "submissions": [
+    {
+      "id": 0,
+      "name": "triangle"
+    },
+    {
+      "id": 1,
+      "name": "arm bar"
+    },
+    {
+      "id": 2,
+      "name": "collar choke"
+    },
+    {
+      "id": 3,
+      "name": "loop choke"
+    },
+    {
+      "id": 4,
+      "name": "straight ankle lock"
+    },
+    {
+      "id": 5,
+      "name": "heel hook"
+    }
+  ],
+  "sweeps": [
+    {
+      "id": 0,
+      "name": "sickle sweep"
+    },
+    {
+      "id": 1,
+      "name": "tripod sweep"
+    },
+    {
+      "id": 2,
+      "name": "scissor sweep"
+    },
+    {
+      "id": 0,
+      "name": "overhead sweep"
+    },
+    {
+      "id": 0,
+      "name": "butterfly sweep"
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "name": "sammyteahan",
+      "submissions": [],
+      "sweeps": []
+    }
+  ]
+}
