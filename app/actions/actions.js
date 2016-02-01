@@ -23,7 +23,7 @@ export function fetchSubmissions() {
   }
 }
 
-export function receiveSubmissions(response) {
+function receiveSubmissions(response) {
   return {
     type: RECEIVE_SUBMISSIONS,
     data: response.data
@@ -40,7 +40,7 @@ export function addSubmission(submissionName) {
   }
 }
 
-export function newSubmissionAdded(id, name) {
+function newSubmissionAdded(id, name) {
   return {
     type: SUBMISSION_ADDED,
     data: {
@@ -58,7 +58,7 @@ export function fetchSweeps() {
   }
 }
 
-export function receiveSweeps(response) {
+function receiveSweeps(response) {
   return {
     type: RECEIVE_SWEEPS,
     data: response.data
