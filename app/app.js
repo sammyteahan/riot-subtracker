@@ -10,6 +10,8 @@ import './components/app.tag';
 import './components/submission-list.tag';
 import './components/sweep-list.tag';
 import './components/submission-form.tag';
+import './components/sweep-form.tag';
+
 
 /**
 * @desc need a better way to pass actions arround
@@ -17,8 +19,10 @@ import './components/submission-form.tag';
 import {
   fetchSubmissions,
   fetchSweeps,
-  addSubmission 
+  addSubmission,
+  addSweep
 } from './actions/actions';
+
 
 /**
 * @desc stylesheet
@@ -59,6 +63,10 @@ function sweepsReducer(state={}, action) {
       return Object.assign({}, state, {
         items: action.data
       });
+    case 'SWEEP_ADDED':
+      return Object.assign({}, state, {
+        items: [...state.items, action.data]
+      });
     case 'INCREMENT_SWEEP':
       return state;
     case 'INCREMENT_THING':
@@ -91,5 +99,6 @@ Riot.mount('app', {
   chart: chart,
   fetchSubmissions: fetchSubmissions,
   fetchSweeps: fetchSweeps,
-  addSubmission: addSubmission
+  addSubmission: addSubmission,
+  addSweep: addSweep
 });

@@ -12,12 +12,20 @@
     addSubmission={handleNewSubmission}>
   </submission-form>
 
+  <sweep-form
+    addSweep={handleNewSweep}>
+  </sweep-form>
+
   <script>
     let self = this;
     let store = opts.store;
 
     self.handleNewSubmission = (submissionName) => {
       store.dispatch(opts.addSubmission(submissionName));
+    }
+
+    self.handleNewSweep = (sweepName) => {
+      store.dispatch(opts.addSweep(sweepName));
     }
 
     /**

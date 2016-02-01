@@ -64,3 +64,23 @@ function receiveSweeps(response) {
     data: response.data
   };
 }
+
+export function addSweep(sweepName) {
+  return function (dispatch, getState) {
+    axios.post('http://localhost:3000/sweeps', {
+      name: sweepName
+    }).then((response) => {
+      dispatch(newSweep(response.data.id, response.data.name));
+    });
+  }
+}
+
+function newSweep(id, name) {
+  return {
+    type: SWEEP_ADDED,
+    data: {
+      id: id,
+      name: name
+    }
+  };
+}
