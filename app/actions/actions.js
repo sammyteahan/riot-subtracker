@@ -11,6 +11,7 @@ export const SUBMISSION_DELETED = 'SUBMISSION_DELETED';
 export const INCREMENT_SUB = 'INCREMENT_SUB';
 export const RECEIVE_SUBMISSIONS = 'RECEIVE_SUBMISSIONS';
 export const RECEIVE_SWEEPS = 'RECEIVE_SWEEPS';
+export const SWEEP_DELETED = 'SWEEP_DELETED';
 
 
 /**
@@ -54,15 +55,16 @@ function newSubmissionAdded(id, name) {
 export function deleteSubmission(id, index) {
   return function (dispatch, getState) {
     axios.delete(`http://localhost:3000/submissions/${id}`).then((response) => {
-      dispatch(submissionDeleted(id, response));
+      dispatch(submissionDeleted(id, index, response));
     });
   }
 }
 
-function submissionDeleted(id, response) {
+function submissionDeleted(id, index, response) {
   return {
     type: SUBMISSION_DELETED,
     id: id,
+    index, index,
     response: response
   };
 }
@@ -99,5 +101,21 @@ function newSweep(id, name) {
       id: id,
       name: name
     }
+  };
+}
+
+export function deleteSweep(id, index) {
+  return function (dispatch, getState) {
+    axios.delete(`http://localhost:3000/sweeps/${id}`).then((response) => {
+      dispatch(sweepDeleted(id, index, response));
+    });
+  }
+}
+
+function sweepDeleted(id, index, response) {
+  return {
+    type: SWEEP_DELETED,
+    id: id,
+    index: index
   };
 }

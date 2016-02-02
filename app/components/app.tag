@@ -10,7 +10,11 @@
   </submission-list>
 
   <h4 class="">Sweeps</h4>
-  <sweep-list sweeps={state.sweeps.items}></sweep-list>
+  <sweep-list 
+    sweeps={state.sweeps.items}
+    deleteSweep={opts.deleteSweep}
+    store={opts.store}>
+  </sweep-list>
 
   <submission-form 
     addSubmission={handleNewSubmission}>

@@ -21,7 +21,8 @@ import {
   fetchSweeps,
   addSubmission,
   addSweep,
-  deleteSubmission
+  deleteSubmission,
+  deleteSweep
 } from './actions/actions';
 
 
@@ -31,20 +32,8 @@ import {
 import './sass/main.scss';
 
 
-const submissions = (state, action) => {
-  switch (action.type) {
-    case 'ADD_SUBMISSION':
-      return {
-        id: action.id,
-        name: action.name
-      }
-    default:
-      return state;
-  }
-};
-
 /**
-* @todo fix submission_deleted
+* @name reducers
 */
 function submissionReducer(state={}, action) {
   switch(action.type) {
@@ -60,7 +49,6 @@ function submissionReducer(state={}, action) {
       return Object.assign({}, state, {
         items: [
           ...state.items.slice(0, action.index),
-          state.items[action.index] + 1,
           ...state.items.slice(action.index + 1)
         ]
       });
@@ -79,10 +67,13 @@ function sweepsReducer(state={}, action) {
       return Object.assign({}, state, {
         items: [...state.items, action.data]
       });
-    case 'INCREMENT_SWEEP':
-      return state;
-    case 'INCREMENT_THING':
-      return state;
+    case 'SWEEP_DELETED':
+      return Object.assign({}, state, {
+        items: [
+          ...state.items.slice(0, action.index),
+          ...state.items.slice(action.index + 1)
+        ]
+      });
     default:
       return state;
   }
@@ -113,5 +104,6 @@ Riot.mount('app', {
   fetchSweeps: fetchSweeps,
   addSubmission: addSubmission,
   addSweep: addSweep,
-  deleteSubmission: deleteSubmission
+  deleteSubmission: deleteSubmission,
+  deleteSweep: deleteSweep
 });

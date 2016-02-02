@@ -17,16 +17,16 @@
       "name": "loop choke"
     },
     {
-      "id": 4,
-      "name": "straight ankle lock"
-    },
-    {
       "id": 5,
       "name": "heel hook"
     },
     {
-      "id": 6,
-      "name": "knee bar"
+      "name": "straight ankle lock",
+      "id": 6
+    },
+    {
+      "name": "Knee bar",
+      "id": 7
     }
   ],
   "sweeps": [
@@ -43,12 +43,12 @@
       "name": "scissor sweep"
     },
     {
-      "id": 0,
-      "name": "overhead sweep"
+      "id": 4,
+      "name": "butterfly sweep"
     },
     {
-      "id": 0,
-      "name": "butterfly sweep"
+      "name": "elevator sweep",
+      "id": 5
     }
   ],
   "users": [
