@@ -25,16 +25,8 @@
       "name": "heel hook"
     },
     {
-      "name": "knee bar",
-      "id": 6
-    },
-    {
-      "name": "Baseball bat choke",
-      "id": 7
-    },
-    {
-      "name": "Omoplata",
-      "id": 8
+      "id": 6,
+      "name": "knee bar"
     }
   ],
   "sweeps": [

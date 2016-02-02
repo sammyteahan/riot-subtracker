@@ -7,6 +7,7 @@ export const INCREMENT_SWEEP = 'INCREMENT_SWEEP';
 export const ADD_SWEEP = 'ADD_SWEEP';
 export const SWEEP_ADDED = 'SWEEP_ADDED';
 export const SUBMISSION_ADDED = 'SUBMISSION_ADDED';
+export const SUBMISSION_DELETED = 'SUBMISSION_DELETED';
 export const INCREMENT_SUB = 'INCREMENT_SUB';
 export const RECEIVE_SUBMISSIONS = 'RECEIVE_SUBMISSIONS';
 export const RECEIVE_SWEEPS = 'RECEIVE_SWEEPS';
@@ -47,6 +48,22 @@ function newSubmissionAdded(id, name) {
       id: id,
       name: name
     }
+  };
+}
+
+export function deleteSubmission(id, index) {
+  return function (dispatch, getState) {
+    axios.delete(`http://localhost:3000/submissions/${id}`).then((response) => {
+      dispatch(submissionDeleted(id, response));
+    });
+  }
+}
+
+function submissionDeleted(id, response) {
+  return {
+    type: SUBMISSION_DELETED,
+    id: id,
+    response: response
   };
 }
 

@@ -20,7 +20,8 @@ import {
   fetchSubmissions,
   fetchSweeps,
   addSubmission,
-  addSweep
+  addSweep,
+  deleteSubmission
 } from './actions/actions';
 
 
@@ -42,6 +43,9 @@ const submissions = (state, action) => {
   }
 };
 
+/**
+* @todo fix submission_deleted
+*/
 function submissionReducer(state={}, action) {
   switch(action.type) {
     case 'RECEIVE_SUBMISSIONS':
@@ -51,6 +55,14 @@ function submissionReducer(state={}, action) {
     case 'SUBMISSION_ADDED':
       return Object.assign({}, state, {
         items: [...state.items, action.data]
+      });
+    case 'SUBMISSION_DELETED':
+      return Object.assign({}, state, {
+        items: [
+          ...state.items.slice(0, action.index),
+          state.items[action.index] + 1,
+          ...state.items.slice(action.index + 1)
+        ]
       });
     default:
       return state;
@@ -100,5 +112,6 @@ Riot.mount('app', {
   fetchSubmissions: fetchSubmissions,
   fetchSweeps: fetchSweeps,
   addSubmission: addSubmission,
-  addSweep: addSweep
+  addSweep: addSweep,
+  deleteSubmission: deleteSubmission
 });
