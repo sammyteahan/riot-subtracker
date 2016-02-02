@@ -13,10 +13,6 @@
       "name": "collar choke"
     },
     {
-      "id": 3,
-      "name": "loop choke"
-    },
-    {
       "id": 5,
       "name": "heel hook"
     },
@@ -25,7 +21,7 @@
       "id": 6
     },
     {
-      "name": "Knee bar",
+      "name": "loop choke",
       "id": 7
     }
   ],

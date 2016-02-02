@@ -46,7 +46,7 @@
       self.update();
     });
 
-    self.on('mount', function() {
+    self.on('before-mount', function() {
       store.dispatch(opts.fetchSubmissions());
       store.dispatch(opts.fetchSweeps());
     });

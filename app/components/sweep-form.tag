@@ -1,9 +1,9 @@
 <sweep-form>
   <h4>Add Sweep</h4>
-  <div>
+  <form onsubmit={handleSubmit}>
     <input type="text" name="newSweep">
-    <button name="submit" onclick={handleSubmit}>Submit</button>
-  </div>
+    <button type="submit">Submit</button>
+  </form>
   <script>
     let self = this;
 
