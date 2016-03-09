@@ -23,58 +23,58 @@ import {
 /**
 * @desc tmp data store of sub/sweep data
 */
-// var params = {
-//   radarData: {
-//     labels: ["Triangle", "Arm Triangle", "Arm Lock", "Shoulder Lock", "Choke", "Ankle Lock", "Knee Bar"],
-//     datasets: [
-//       {
-//         label: "My First dataset",
-//         fillColor: "rgba(220,220,220,0.2)",
-//         strokeColor: "rgba(220,220,220,1)",
-//         pointColor: "rgba(220,220,220,1)",
-//         pointStrokeColor: "#fff",
-//         pointHighlightFill: "#fff",
-//         pointHighlightStroke: "rgba(220,220,220,1)",
-//         data: [65, 59, 90, 81, 56, 55, 40]
-//       },
-//       {
-//         label: "My Second dataset",
-//         fillColor: "rgba(151,187,205,0.2)",
-//         strokeColor: "rgba(151,187,205,1)",
-//         pointColor: "rgba(151,187,205,1)",
-//         pointStrokeColor: "#fff",
-//         pointHighlightFill: "#fff",
-//         pointHighlightStroke: "rgba(151,187,205,1)",
-//         data: [28, 48, 40, 19, 96, 27, 100]
-//       }
-//     ]
-//   },
-//   lineData: {
-//     labels: ["January", "February", "March", "April", "May", "June", "July"],
-//     datasets: [
-//       {
-//         label: "My First dataset",
-//         fillColor: "rgba(220,220,220,0.2)",
-//         strokeColor: "rgba(220,220,220,1)",
-//         pointColor: "rgba(220,220,220,1)",
-//         pointStrokeColor: "#fff",
-//         pointHighlightFill: "#fff",
-//         pointHighlightStroke: "rgba(220,220,220,1)",
-//         data: [65, 59, 80, 81, 56, 55, 40]
-//       },
-//       {
-//         label: "My Second dataset",
-//         fillColor: "rgba(151,187,205,0.2)",
-//         strokeColor: "rgba(151,187,205,1)",
-//         pointColor: "rgba(151,187,205,1)",
-//         pointStrokeColor: "#fff",
-//         pointHighlightFill: "#fff",
-//         pointHighlightStroke: "rgba(151,187,205,1)",
-//         data: [28, 48, 40, 19, 86, 27, 90]
-//       }
-//     ]
-//   }
-// };
+var params = {
+  radarData: {
+    labels: ["Triangle", "Arm Triangle", "Arm Lock", "Shoulder Lock", "Choke", "Ankle Lock", "Knee Bar"],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: [65, 59, 90, 81, 56, 55, 40]
+      },
+      {
+        label: "My Second dataset",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: [28, 48, 40, 19, 96, 27, 100]
+      }
+    ]
+  },
+  lineData: {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: [65, 59, 80, 81, 56, 55, 40]
+      },
+      {
+        label: "My Second dataset",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: [28, 48, 40, 19, 86, 27, 90]
+      }
+    ]
+  }
+};
 
 function reducer(state={submissions: [], sweeps: []}, action) {
   switch(action.type) {
@@ -156,14 +156,14 @@ const rootReducer = combineReducers({
 
 const reduxStore = createStoreWithMiddleware(rootReducer);
 
-// Riot.mount('submission-entry', {data: params.lineData});
-// Riot.mount('line-graph', {data: params.lineData, chart: chart});
-// Riot.mount('radar-graph', {data: params.radarData, chart: chart});
+Riot.mount('submission-entry', {data: params.lineData});
+Riot.mount('line-graph', {data: params.lineData, chart: chart});
+Riot.mount('radar-graph', {data: params.radarData, chart: chart});
 
-Riot.mount('app', {
-  store: reduxStore,
-  chart: chart,
-  fetchSubmissions: fetchSubmissions,
-  fetchSweeps: fetchSweeps,
-  addSubmission: addSubmission
-});
+// Riot.mount('app', {
+//   store: reduxStore,
+//   chart: chart,
+//   fetchSubmissions: fetchSubmissions,
+//   fetchSweeps: fetchSweeps,
+//   addSubmission: addSubmission
+// });
