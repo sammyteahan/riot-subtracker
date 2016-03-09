@@ -13,23 +13,15 @@
       "name": "collar choke"
     },
     {
-      "id": 5,
-      "name": "heel hook"
+      "name": "baseball bat choke",
+      "id": 3
     },
     {
-      "name": "straight ankle lock",
-      "id": 6
-    },
-    {
-      "name": "loop choke",
-      "id": 7
+      "name": "new thing",
+      "id": 4
     }
   ],
   "sweeps": [
-    {
-      "id": 0,
-      "name": "sickle sweep"
-    },
     {
       "id": 1,
       "name": "tripod sweep"
@@ -37,10 +29,6 @@
     {
       "id": 2,
       "name": "scissor sweep"
-    },
-    {
-      "id": 4,
-      "name": "butterfly sweep"
     },
     {
       "name": "elevator sweep",

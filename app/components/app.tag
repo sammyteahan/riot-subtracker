@@ -2,14 +2,14 @@
   <h2>Analytics</h2>
   <hr>
 
-  <h4 class="">Subs</h4>
+  <h4>Subs</h4>
   <submission-list 
     submissions={state.submissions.items}
     deleteSubmission={opts.deleteSubmission}
     store={opts.store}>
   </submission-list>
 
-  <h4 class="">Sweeps</h4>
+  <h4>Sweeps</h4>
   <sweep-list 
     sweeps={state.sweeps.items}
     deleteSweep={opts.deleteSweep}

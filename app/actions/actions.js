@@ -1,4 +1,5 @@
 import axios from 'axios';
+import fetch from 'isomorphic-fetch';
 
 /**
 * @name actions
@@ -11,8 +12,11 @@ export const RECEIVE_SWEEPS = 'RECEIVE_SWEEPS';
 export const SWEEP_DELETED = 'SWEEP_DELETED';
 
 
+
 /**
 * @name action creators
+*
+* @todo replace axios with isomorphic-fetch
 */
 export function fetchSubmissions() {
   return function (dispatch, getState) {
@@ -68,16 +72,16 @@ function submissionDeleted(id, index, response) {
 
 export function fetchSweeps() {
   return function (dispatch, getState) {
-    return axios.get('http://localhost:3000/sweeps').then((response) => {
-      dispatch(receiveSweeps(response));
-    });
+    return fetch('http://localhost:3000/sweeps')
+      .then(response => response.json())
+      .then(json => dispatch(receiveSweeps(json)));
   }
 }
 
 function receiveSweeps(response) {
   return {
     type: RECEIVE_SWEEPS,
-    data: response.data
+    data: response
   };
 }
 
