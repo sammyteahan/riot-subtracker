@@ -36,6 +36,11 @@ module.exports = {
           'style',
           'css!sass'
         )
+      },
+      {
+        test: /\.(png|jpg|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: /node_modules/,
+        loader: 'file-loader'
       }
     ]
   }

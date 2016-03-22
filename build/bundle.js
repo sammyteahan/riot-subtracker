@@ -7173,7 +7173,6 @@
 	}
 
 	function receiveSweeps(response) {
-	  console.log(response);
 	  return {
 	    type: RECEIVE_SWEEPS,
 	    data: response

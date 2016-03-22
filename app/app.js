@@ -1,6 +1,6 @@
 import Riot from 'riot';
 import chart from 'chart.js';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { submissionReducer, sweepsReducer } from './reducers/reducers';
@@ -34,9 +34,12 @@ import './sass/main.scss';
 
 const loggerMiddleware = createLogger();
 
-const createStoreWithMiddleware = applyMiddleware(
+const createStoreWithMiddleware = compose(
+  applyMiddleware(
   thunkMiddleware,
   loggerMiddleware
+  ),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
 const rootReducer = combineReducers({
