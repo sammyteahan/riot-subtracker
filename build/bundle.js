@@ -96,7 +96,9 @@
 
 	var loggerMiddleware = (0, _reduxLogger2['default'])();
 
-	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2['default'], loggerMiddleware)(_redux.createStore);
+	var createStoreWithMiddleware = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2['default'], loggerMiddleware), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	  return f;
+	})(_redux.createStore);
 
 	var rootReducer = (0, _redux.combineReducers)({
 	  submissions: _reducersReducers.submissionReducer,

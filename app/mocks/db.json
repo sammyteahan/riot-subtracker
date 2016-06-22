@@ -5,10 +5,6 @@
       "name": "triangle"
     },
     {
-      "id": 1,
-      "name": "arm bar"
-    },
-    {
       "id": 2,
       "name": "collar choke"
     },
@@ -21,10 +17,6 @@
     {
       "id": 1,
       "name": "tripod sweep"
-    },
-    {
-      "id": 2,
-      "name": "scissor sweep"
     },
     {
       "name": "elevator sweep",

@@ -56,7 +56,7 @@ function newSubmissionAdded(id, name) {
 export function deleteSubmission(id, index) {
   return function (dispatch, getState) {
     axios.delete(`http://localhost:3000/submissions/${id}`).then((response) => {
-      dispatch(submissionDeleted(id, index, response));
+      dispatch(submissionDeleted(id, index));
     });
   }
 }
@@ -65,8 +65,7 @@ function submissionDeleted(id, index, response) {
   return {
     type: SUBMISSION_DELETED,
     id: id,
-    index, index,
-    response: response
+    index, index
   };
 }
 
